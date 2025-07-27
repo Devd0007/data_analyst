@@ -1,0 +1,19 @@
+modules = ["python-3.11"]
+
+[nix]
+channel = "stable-23_05"
+
+[deployment]
+run = ["sh", "-c", "python main.py"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[env]
+PYTHONPATH = "$PYTHONPATH:/home/runner/$REPL_SLUG"
+FLASK_ENV = "production"
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix", "main.py", "requirements.txt"]
